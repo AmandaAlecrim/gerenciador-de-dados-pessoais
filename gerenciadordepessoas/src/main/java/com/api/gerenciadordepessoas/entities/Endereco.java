@@ -24,7 +24,7 @@ public class Endereco implements Serializable {
     private int cep;
     private int numero;
     private String cidade;
-    private boolean principal;
+    public boolean principal;
 
     @JsonIgnore // para mostrar o código que não precisa serializar o objeto e evitar um looping
                 // infinito.

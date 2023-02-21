@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.api.gerenciadordepessoas.entities.Endereco;
 import com.api.gerenciadordepessoas.entities.Pessoa;
 import com.api.gerenciadordepessoas.repositories.PessoaRepository;
 
@@ -51,6 +52,23 @@ public class PessoaResource {
     public void deletarPessoa(@PathVariable(value = "id") Long id) {
         Pessoa p = pessoaRepository.findById(id).get();
         pessoaRepository.delete(p);
+    }
+
+    /*
+     * mostrar o endereço principal da pessoa
+     */
+    @GetMapping(value = "/{id}/principal")
+    public Endereco mostrarEnderecoPrincipal(@PathVariable Long id) {
+        Pessoa pes = pessoaRepository.findById(id).get();
+        List<Endereco> ends = pes.getEnderecos();
+        if (ends.size() > 0) {
+            for (Endereco e : ends) {
+                if (e.principal) {
+                    return e;
+                }
+            }
+        }
+        return null;
     }
 
 }
