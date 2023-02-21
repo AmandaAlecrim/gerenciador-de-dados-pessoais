@@ -27,7 +27,7 @@ public class PessoaResource {
 
     @GetMapping(value = "/{id}") // mostra uma pessoa especifica a partir do id
     public ResponseEntity<Pessoa> findById(@PathVariable Long id) {
-        Pessoa ende = pessoaRepository.findById(id);
+        Pessoa ende = pessoaRepository.findById(id).get();
         return ResponseEntity.ok().body(ende);
     }
 

@@ -28,12 +28,12 @@ public class GerenciadordepessoasApplication implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 
-		Pessoa pes1 = new Pessoa(1L, "Roberto", "2000-07-14");
-		Pessoa pes2 = new Pessoa(2L, "José", "2000-07-14");
+		Pessoa pes1 = new Pessoa(null, "Roberto", "2000-07-14");
+		Pessoa pes2 = new Pessoa(null, "José", "2000-07-14");
 
-		Endereco ende1 = new Endereco(1L, "Rua pipipi", 123456, 123, "florianópolis", true, pes1);
-		Endereco ende2 = new Endereco(2L, "Rua popopo", 654321, 321, "biguaçu", true, pes2);
-		Endereco ende3 = new Endereco(3L, "Rua papapa", 246810, 246, "wonderland", false, pes1);
+		Endereco ende1 = new Endereco(null, "Rua pipipi", 123456, 123, "florianópolis", true, pes1);
+		Endereco ende2 = new Endereco(null, "Rua popopo", 654321, 321, "biguaçu", true, pes2);
+		Endereco ende3 = new Endereco(null, "Rua papapa", 246810, 246, "wonderland", false, pes1);
 		pes1.getEnderecos().addAll(Arrays.asList(ende1, ende3));
 		pes2.getEnderecos().addAll(Arrays.asList(ende2));
 

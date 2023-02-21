@@ -3,16 +3,27 @@ package com.api.gerenciadordepessoas.entities;
 import java.io.Serializable;
 import java.util.List;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
+
 import java.util.ArrayList;
 
+@Entity
 public class Pessoa implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     private String name;
     private String nascimento;
 
+    @OneToMany(mappedBy = "pessoa")
     private List<Endereco> enderecos = new ArrayList<>();
 
     public Pessoa() {

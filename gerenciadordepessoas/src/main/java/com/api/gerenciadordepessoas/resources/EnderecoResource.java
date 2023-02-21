@@ -27,7 +27,7 @@ public class EnderecoResource {
 
     @GetMapping(value = "/{id}") // mostra um endereco especifico a partir do id
     public ResponseEntity<Endereco> findById(@PathVariable Long id) {
-        Endereco ende = enderecoRepository.findById(id);
+        Endereco ende = enderecoRepository.findById(id).get();
         return ResponseEntity.ok().body(ende);
     }
 
