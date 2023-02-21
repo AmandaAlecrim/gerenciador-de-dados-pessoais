@@ -2,6 +2,8 @@ package com.api.gerenciadordepessoas.entities;
 
 import java.io.Serializable;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 public class Endereco implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -11,18 +13,24 @@ public class Endereco implements Serializable {
     private int cep;
     private int numero;
     private String cidade;
+    private boolean principal;
+
+    @JsonIgnore // para mostrar o código que não precisa serializar o objeto e evitar um looping
+                // infinito.
+    private Pessoa pessoa;
 
     public Endereco() {
 
     }
 
-    public Endereco(Long id, String logradouro, int cep, int numero, String cidade) {
-        super();
+    public Endereco(Long id, String logradouro, int cep, int numero, String cidade, boolean principal, Pessoa pessoa) {
         this.id = id;
         this.logradouro = logradouro;
         this.cep = cep;
         this.numero = numero;
         this.cidade = cidade;
+        this.principal = principal;
+        this.pessoa = pessoa;
     }
 
     public Long getId() {
@@ -65,30 +73,20 @@ public class Endereco implements Serializable {
         this.cidade = cidade;
     }
 
-    // Uso de hashCode e equals para fazer a comparação entre os ids de endereço.
-    @Override
-    public int hashCode() {
-        final int prime = 31;
-        int result = 1;
-        result = prime * result + ((id == null) ? 0 : id.hashCode());
-        return result;
+    public boolean isPrincipal() {
+        return principal;
     }
 
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj)
-            return true;
-        if (obj == null)
-            return false;
-        if (getClass() != obj.getClass())
-            return false;
-        Endereco other = (Endereco) obj;
-        if (id == null) {
-            if (other.id != null)
-                return false;
-        } else if (!id.equals(other.id))
-            return false;
-        return true;
+    public void setPrincipal(boolean principal) {
+        this.principal = principal;
+    }
+
+    public Pessoa getPessoa() {
+        return pessoa;
+    }
+
+    public void setPessoa(Pessoa pessoa) {
+        this.pessoa = pessoa;
     }
 
 }
